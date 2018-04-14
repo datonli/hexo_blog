@@ -13,6 +13,13 @@ tags: utils
 ```
     sudo npm install hexo --save
     sudo npm install
+    
+    sudo npm install hexo-renderer-pug --save
+    sudo npm install hexo-renderer-sass --save
+    (
+        npm install -g cnpm --registry=https://registry.npm.taobao.org
+        sudo cnpm install hexo-renderer-sass --save
+    )
 ```
 按理可以正常使用了，后续指令是用hexo的
 ```
