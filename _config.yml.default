@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 走在人生的边上
+title: Datong Li's Blogs
 subtitle:
 description:
 keywords:
 author: Datong Li
-language: zh-CN
+language: zh
 timezone:
 
 # URL
@@ -41,7 +41,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: true
+  auto_detect: false
   tab_replace:
 
 # Home page setting
