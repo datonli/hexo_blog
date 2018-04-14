@@ -5,6 +5,16 @@ tags: utils
 ---
 
 今天开始使用hexo+github，构建一个简单的blog，做一些技术内容的记录。担心会时不时忘记hexo怎么用，那么就先来记录一下hexo的用法吧。
+首先，安装nodejs
+```
+    sudo apt install nodejs
+```
+获取了代码库（git@github.com:DatongLi/hexo_blog.git）之后
+```
+    sudo npm install hexo --save
+    sudo npm install
+```
+按理可以正常使用了，后续指令是用hexo的
 ```
     hexo g //generate ,编译成静态文件
     hexo d //deploy, 部署网站
