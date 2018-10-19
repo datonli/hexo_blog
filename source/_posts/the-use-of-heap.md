@@ -9,9 +9,18 @@ tags: cpp
 
 ```
 std::make_heap(v.begin(), v.end());   // build a heap for vector
+
+
+// 组合用法
 std::pop_heap(v.begin(), v.end());    // moves the largest to the end，即从heap中删掉最大的节点，挪到vector的最后
+v.pop_back();
+
+
+// 组合用法
+v.push_back(a);
 std::push_heap(v.begin(), v.end());   // 在vector最后存在一个未排序的节点前提下，调用push_heap将对最后元素往前面已经组成heap的结构中添加
 ```
+
 
 #### 特殊使用
 因为默认的只是max heap，并且可以支持的comparator函数比较少，往往在实际使用中需要自定义。
