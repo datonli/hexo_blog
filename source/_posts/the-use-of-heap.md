@@ -26,6 +26,7 @@ std::push_heap(v.begin(), v.end());   // 在vector最后存在一个未排序的
 因为默认的只是max heap，并且可以支持的comparator函数比较少，往往在实际使用中需要自定义。
 
 ```
+// 最小堆的实现
 struct Greater {
   bool operator()(int a, int b) {
     return a > b;
@@ -37,3 +38,48 @@ make_heap(v.begin(), v.end(), greater_);
 ```
 注意重载`operator()`，使其类可以作为类似函数的使用。
 
+#### 经典面试题：找到最大的前k个数
+从给定数组中找到最大的k个数（或者第k个数），经典解答就是用堆排序，但是要用的却是最小堆，因为需要先构建最小堆然后不停更新最小堆的根节点（最小值），用数组中遍历到的大于根节点的数值来替换，这样才能找到前k个最大的数。
+```
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+struct Greater {
+  bool operator()(int a, int b) { return a > b; }
+};
+
+class Solution {
+ public:
+  vector<int> GetLargestNumbers_Solution(vector<int> input, int k) {
+    if (k <= 0 || k > input.size() || input.size() == 0) return vector<int>();
+    Greater greater_;
+    vector<int> vs(input.begin(), input.begin() + k);
+    make_heap(vs.begin(), vs.end(), greater_);
+    for (int i = k; i < input.size(); ++i) {
+      if (input[i] > vs[0]) {
+        pop_heap(vs.begin(), vs.end(), greater_);
+        vs.pop_back();
+
+        vs.push_back(input[i]);
+        push_heap(vs.begin(), vs.end(), greater_);
+      }
+    }
+    return std::move(vs);
+  }
+};
+
+int main() {
+  Solution sol;
+  vector<int> input{3, 5, 1, 6, 7, 2, 10};
+  vector<int> vs = sol.GetLargestNumbers_Solution(input, 4);
+  for (auto vi : vs) {
+    cout << vi << ",";
+  }
+  cout << endl;
+}
+
+// 输出：5,7,6,10
+```
