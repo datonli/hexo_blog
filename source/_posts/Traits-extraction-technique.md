@@ -6,13 +6,14 @@ tags: cpp
 
 ### 概述
 traits是一种特性萃取技术,它在Generic Programming中被广泛运用,常常被用于使不同的类型可以用于相同的操作,或者针对不同类型提供不同的实现.traits在实现过程中往往需要用到以下三种C++的基本特性:
-enum
-typedef
-template (partial) specialization
+1. enum
+2. typedef
+3. template (partial) specialization
+
 其中:
-enum用于将在不同类型间变化的标示统一成一个,它在C++中常常被用于在类中替代define,你可以称enum为类中的define;
-typedef则用于定义你的模板类支持特性的形式,你的模板类必须以某种形式支持某一特性,否则类型萃取器traits将无法正常工作.看到这里你可能会想,太苛刻了吧?其实不然,不支持某种特性本身也是一种支持的方式(见示例2,我们定义了两种标示,__xtrue_type和__xfalse_type,分别表示对某特性支持和不支持).
-template (partial) specialization被用于提供针对特定类型的正确的或更合适的版本.
+1. enum用于将在不同类型间变化的标示统一成一个,它在C++中常常被用于在类中替代define,你可以称enum为类中的define;
+2. typedef则用于定义你的模板类支持特性的形式,你的模板类必须以某种形式支持某一特性,否则类型萃取器traits将无法正常工作.看到这里你可能会想,太苛刻了吧?其实不然,不支持某种特性本身也是一种支持的方式(见示例2,我们定义了两种标示,__xtrue_type和__xfalse_type,分别表示对某特性支持和不支持).
+3. template (partial) specialization被用于提供针对特定类型的正确的或更合适的版本.
 
 traits可被用于针对不同类型提供不同的实现。
 
