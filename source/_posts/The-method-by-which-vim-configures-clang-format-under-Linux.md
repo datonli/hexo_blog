@@ -112,3 +112,9 @@ let g:clang_format#style_options = {
 用vim打开任一文件，执行：`echo executable('clang-format') `看看输出是否为1，若是则代表`clang-format`在vim中是可执行的。
 
 可以打开任一`C/C++`文件，直接按`F4`执行`clang-format`了。
+
+#### 批量格式化目录下的文件
+经常需要对一个目录下所有指定后缀的文件做批量格式化处理，指令如下：
+```
+clang-format -style=file -i `find . -type f -regex ".*\.\(cpp\|h\)"`
+```
