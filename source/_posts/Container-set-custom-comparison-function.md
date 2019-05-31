@@ -16,7 +16,7 @@ tags: cpp
 
 using namespace std;
 
-class Point {
+struct Point {
  public:
   int x;
   int y;
@@ -25,29 +25,25 @@ class Point {
 
 struct SetCmp {
   bool operator()(const Point& first, const Point& second) {
-    if (first.x < second.x)
-      return true;
-    else if (first.x > second.x)
-      return false;
-    else {
-      if (first.y < second.y)
-        return true;
-      else
+    if (first.x == second.x) {
+      if (first.y == second.y) {
         return false;
+      }
+      return first.y < second.y;
+    } else {
+      return first.x < second.x;
     }
   }
 };
 
 auto SetCmp2 = [](const Point& first, const Point& second) -> bool {
-  if (first.x < second.x)
-    return true;
-  else if (first.x > second.x)
-    return false;
-  else {
-    if (first.y < second.y)
-      return true;
-    else
+  if (first.x == second.x) {
+    if (first.y == second.y) {
       return false;
+    }
+    return first.y < second.y;
+  } else {
+    return first.x < second.x;
   }
 };
 
