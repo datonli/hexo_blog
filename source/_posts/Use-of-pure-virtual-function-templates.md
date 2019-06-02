@@ -48,6 +48,20 @@ int main() {
   std::cout << "sum(3,4,5) = "
             << processor_impl.Process(std::vector<uint64_t>{3, 4, 5})
             << std::endl;
+
+  auto MultiplyFunc =
+      [](const std::vector<uint64_t>& process_list) -> uint64_t {
+    uint64_t result = 1;
+    for (uint64_t num : process_list) {
+      result *= num;
+    }
+    return result;
+  };
+  ProcessorImpl<decltype(MultiplyFunc)> processor_impl2(MultiplyFunc);
+  std::cout << "multiply(3,4,5) = "
+            << processor_impl.Process(std::vector<uint64_t>{3, 4, 5})
+            << std::endl;
+
   return 0;
 }
 ```
@@ -55,4 +69,5 @@ int main() {
 结果：
 ```
 sum(3,4,5) = 12
+multiply(3,4,5) = 12
 ```
