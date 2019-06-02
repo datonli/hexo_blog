@@ -22,13 +22,13 @@ class Processor {
   virtual T Process(const std::vector<T>&) = 0;
 };
 
-template <typename Func>
-class ProcessorImpl : public Processor<uint64_t> {
+template <typename Func, typename ResultType>
+class ProcessorImpl : public Processor<ResultType> {
  public:
   ProcessorImpl(Func func) : func_(func) {}
   ~ProcessorImpl() {}
 
-  uint64_t Process(const std::vector<uint64_t>& process_list) {
+  ResultType Process(const std::vector<ResultType>& process_list) {
     return func_(process_list);
   }
 
@@ -44,7 +44,7 @@ int main() {
     }
     return result;
   };
-  ProcessorImpl<decltype(AddFunc)> processor_impl(AddFunc);
+  ProcessorImpl<decltype(AddFunc), uint64_t> processor_impl(AddFunc);
   std::cout << "sum(3,4,5) = "
             << processor_impl.Process(std::vector<uint64_t>{3, 4, 5})
             << std::endl;
@@ -57,7 +57,7 @@ int main() {
     }
     return result;
   };
-  ProcessorImpl<decltype(MultiplyFunc)> processor_impl2(MultiplyFunc);
+  ProcessorImpl<decltype(MultiplyFunc), uint64_t> processor_impl2(MultiplyFunc);
   std::cout << "multiply(3,4,5) = "
             << processor_impl.Process(std::vector<uint64_t>{3, 4, 5})
             << std::endl;
